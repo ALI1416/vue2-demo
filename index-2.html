@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 使用拼接太麻烦 -->
+        <p>{{firstName+' '+lastName}}</p>
+        <p>{{firstName}} {{lastName}}</p>
+        <!-- 调用方法需要加() -->
+        <p>{{getFullName()}}</p>
+        <!-- 使用计算属性不用加() -->
+        <p>{{fullName}}</p>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'C',
+                lastName: 'K',
+            },
+            methods: {
+                getFullName: function () {
+                    return this.firstName + ' ' + this.lastName;
+                }
+            },
+            computed: {//计算属性
+                fullName: function () {
+                    return this.firstName + ' ' + this.lastName;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
