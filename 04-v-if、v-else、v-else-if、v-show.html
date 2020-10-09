@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 只有为true时显示 -->
+        <p v-if="true">v-if="true"</p>
+        <!-- 为false时不显示 -->
+        <p v-if="false">v-if="false"</p>
+        <!-- 也可以传入变量，为true时显示 -->
+        <p v-if="isShow">v-if="isShow"</p>
+        <!-- 当使用v-show，为false时，也会隐藏，只不过只改变了样式style="display: none;" -->
+        <!-- 当使用v-if，为false时，会完全删除 -->
+        <!-- 当频繁切换时，使用v-show -->
+        <!-- 但是v-if使用频率更高 -->
+        <p v-show="isShow">v-show="isShow"</p>
+        <!-- 当上一个v-if为false时，显示v-else -->
+        <p v-else>v-else</p>
+        <!-- v-else-if上一个条件不满足，还要满足一个条件时显示 -->
+        <p v-if="score>=90">优秀</p>
+        <p v-else-if="score>=80">良好</p>
+        <p v-else-if="score>=70">中等</p>
+        <p v-else-if="score>=60">及格</p>
+        <p v-else>不及格</p>
+        <!-- 最好不要使用v-else-if，推荐放到computed里面 -->
+        <p>{{grade}}</p>
+
+
+        <!-- 切换登录方式案例 -->
+        <!-- vue会复用已经创建的标签，以下代码当切换登录方式时，已经输入的文本不会消失，可以使用key属性，不同的名称不会复用 -->
+        <span v-if="isAccount">
+            <!-- 当表情为label时，for属性为input的id时，点击label会使input获得焦点 -->
+            <label for="login_account">账号登录</label>
+            <input type="text" name="login_account" id="login_account" placeholder="请输入账号">
+        </span>
+        <span v-else>
+            <label for="login_email">邮箱登录</label>
+            <input type="text" name="login_email" id="login_email" placeholder="请输入邮箱">
+        </span>
+        <br>
+        <!-- key值不同，不会复用 -->
+        <span v-if="isAccount">
+            <label for="login_account2">账号登录</label>
+            <input type="text" name="login_account2" id="login_account2" placeholder="请输入账号" key="login_account2">
+        </span>
+        <span v-else>
+            <label for="login_email2">邮箱登录</label>
+            <input type="text" name="login_email2" id="login_email2" placeholder="请输入邮箱" key="login_email2">
+        </span>
+        <br>
+        <button @click="isAccount=!isAccount">切换登录方式</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isShow: false,
+                score: 87,
+                isAccount: true,
+
+            },
+            methods: {
+
+            },
+            computed: {
+                grade() {
+                    if (this.score >= 90) {
+                        return '优秀';
+                    } else if (this.score >= 80) {
+                        return '良好';
+                    } else if (this.score >= 70) {
+                        return '中等';
+                    } else if (this.score >= 60) {
+                        return '及格';
+                    } else {
+                        return '不及格';
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

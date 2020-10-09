@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 没有参数时括号可以省略 -->
+        <button @click="btn1">1无参不带括号</button><br>
+        <!-- 完整写法 -->
+        <button @click="btn2()">2无参带()</button><br>
+        <!-- 即使没有对应参数个数的方法也不会报错，会调用最合适的重载方法 -->
+        <button @click="btn3('参数1')">3无参带()传值</button><br>
+        <!-- 传递event对象 -->
+        <button @click="btn4">4有参不带括号</button><br>
+        <!-- 传递undefined -->
+        <button @click="btn5()">5有参带()传空值</button><br>
+        <!-- 传递参数 -->
+        <button @click="btn6('参数1')">6有参带()传值</button><br>
+        <!-- 同btn3 -->
+        <button @click="btn7('参数1','参数2')">7有参带()传多值</button><br>
+        <!-- 必须使用$event来传递event对象 -->
+        <button @click="btn8('参数1',$event)">8传event和值</button><br>
+        <!-- 不带''是变量，会从data中寻找 -->
+        <button @click="btn9(abc,$event)">9传event和变量</button><br>
+        <br>
+        <!-- 修饰符的使用 -->
+        <!-- stop，阻止点击冒泡事件 -->
+        <div @click="divStop">
+            aaaa
+            <button @click="btnStop">stop</button>
+        </div>
+        <div @click="divStop">
+            aaaa
+            <!-- @click.stop阻止向上冒泡 -->
+            <button @click.stop="btnStop">stop</button>
+        </div>
+        <!-- prevent，阻止默认事件 -->
+        <form action="aaa">
+            <input type="submit" value="表单提交" @click="formSubmit">
+        </form>
+        <form action="aaa">
+            <!-- @click.prevent阻止了表单自动提交 -->
+            <input type="submit" value="表单提交" @click.prevent="formSubmit">
+        </form>
+        <!-- keyup/keydown.键码/键名，监听某个按键，不写监听全部 -->
+        <input type="text" @keyup="key">
+        <!-- 只监听enter按键 -->
+        <input type="text" @keyup.enter="key">
+        <!-- once只执行一次 -->
+        <button @click="once">点击</button>
+        <!-- 只有第一次点击有效 -->
+        <button @click.once="once">点击</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                abc: '参数1',
+            },
+            methods: {
+                divStop() {
+                    console.log('点击了div');
+                },
+                btnStop() {
+                    console.log('点击了btn');
+                },
+                formSubmit() {
+                    console.log('表单提交');
+                },
+                key(event) {
+                    console.log(event);
+                },
+                once() {
+                    console.log("点击");
+                },
+                btn1() {
+                    console.log('btn1');
+                },
+                btn2() {
+                    console.log('btn2');
+                },
+                btn3() {
+                    console.log('btn3');
+                },
+                btn3(a) {
+                    console.log('btn3', '-----------', a);
+                },
+                btn4(a) {
+                    console.log('btn4', '-----------', a);
+                },
+                btn5(a) {
+                    console.log('btn5', '-----------', a);
+                },
+                btn6(a) {
+                    console.log('btn6', '-----------', a);
+                },
+                btn7(a) {
+                    console.log('btn7', '-----------', a);
+                },
+                btn8(a, event) {
+                    console.log('btn8', '-----------', a, '++++++++++', event);
+                },
+                btn9(a, event) {
+                    console.log('btn9', '-----------', a, '++++++++++', event);
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 遍历数组 -->
+        <ul>
+            <!-- 只获取值 -->
+            <li v-for="item in list">{{item}}</li>
+        </ul>
+        <ul>
+            <!-- 获取值和下标 -->
+            <li v-for="(item, index) in list">{{index+1}}.{{item}}</li>
+        </ul>
+        <!-- 遍历对象 -->
+        <ul>
+            <!-- 只获取值 -->
+            <li v-for="item in obj">{{item}}</li>
+        </ul>
+        <ul>
+            <!-- 获取值和属性名 -->
+            <li v-for="(item, key) in obj">{{key}}.{{item}}</li>
+        </ul>
+        <ul>
+            <!-- 获取值、属性名和下标 -->
+            <li v-for="(item, key, index) in obj">{{index+1}}.{{key}}.{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                list: ['a', 'b', 'c'],
+                obj: {
+                    aa: 'a1',
+                    bb: 'b2',
+                    cc: 'c3',
+                },
+            },
+            methods: {
+
+            },
+            computed: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>
