@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-show="goods.length > 0 ">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>名称</th>
+                        <th>价格</th>
+                        <th>生产日期</th>
+                        <th>数量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in goods">
+                        <td><img :src="item.img" :alt="item.name" :title="item.name" style="width: 50px;"></td>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.price | showPrice}}</td>
+                        <td>{{item.date}}</td>
+                        <td>
+                            <button @click="item.weight--" :disabled="item.weight <= 1">-</button>
+                            {{item.weight}}
+                            <button @click="item.weight++">+</button>
+                        </td>
+                        <td><button @click="goods.splice(index, 1)">删除</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>总价格：{{totalPrice | showPrice}}</p>
+        </div>
+        <div v-show="goods.length === 0 ">
+            您还没有选购物品
+        </div>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                goods: [
+                    {
+                        id: '1',
+                        name: '苹果',
+                        price: 5.6,
+                        date: '2020-01-03',
+                        weight: '2',
+                        img: 'img/goods//苹果.png',
+                    },
+                    {
+                        id: '2',
+                        name: '香蕉',
+                        price: 1.8,
+                        date: '2020-01-04',
+                        weight: '3',
+                        img: 'img/goods/香蕉.png',
+                    },
+                    {
+                        id: '3',
+                        name: '橘子',
+                        price: 3.7,
+                        date: '2020-01-05',
+                        weight: '1',
+                        img: 'img/goods/橘子.png',
+                    },
+                    {
+                        id: '4',
+                        name: '梨子',
+                        price: 2.4,
+                        date: '2020-01-06',
+                        weight: '2',
+                        img: 'img/goods/梨子.png',
+                    },
+                ],
+
+            },
+            methods: {
+
+            },
+            computed: {
+                totalPrice() {
+                    let total = 0;
+                    for (good of this.goods) {
+                        total += good.price * good.weight;
+                    }
+                    return total;
+                }
+            },
+            filters: {
+                showPrice(price) {
+                    return '￥' + price.toFixed(2);
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

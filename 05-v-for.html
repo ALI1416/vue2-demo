@@ -13,7 +13,7 @@
         <!-- 遍历数组 -->
         <ul>
             <!-- 只获取值 -->
-            <li v-for="item in list">{{item}}</li>
+            <li v-for="item in list" :key="item">{{item}}</li>
         </ul>
         <ul>
             <!-- 获取值和下标 -->
@@ -32,12 +32,74 @@
             <!-- 获取值、属性名和下标 -->
             <li v-for="(item, key, index) in obj">{{index+1}}.{{key}}.{{item}}</li>
         </ul>
+        <!-- :key优化 -->
+        <ul>
+            <!-- 使用v-for时，最好带上:key，如下所示 -->
+            <!-- 当在li2下方插入e时(splice(2,0,'e'))，普通写法会改变3个标签 -->
+            <!-- li1--a   a -->
+            <!-- li2--b   b -->
+            <!-- li3--c   e (复制c到li4，插入e)-->
+            <!-- li4--d   c (复制d到li5，插入c)-->
+            <!-- li5      d (新增标签li5)-->
+            <!-- 使用:key后，只会改变1个标签 -->
+            <!-- li1--a   a -->
+            <!-- li2--b   b -->
+            <!-- li5      e (新增标签li5，插入e)-->
+            <!-- li3--c   c -->
+            <!-- li4--d   d -->
+            <!-- :key的值需要是固定的值，如item不会变可以使用，index会变不可使用 -->
+            <!-- item的值最好是唯一值 -->
+            <li v-for="item in list" :key="item">{{item}}</li>
+        </ul>
+        <!-- push/unshift/pop/shift/splice/sort/reverse可以使界面刷新，赋值替换元素不可以 -->
+        <div>
+            <!-- 添加元素到尾部 -->
+            <button @click="list2.push('e')">push尾部添加1个</button>
+            <!-- 可以添加多个 -->
+            <button @click="list2.push('e','f','g')">push尾部添加多个</button>
+            <!-- 添加元素到首部 -->
+            <button @click="list2.unshift('e')">unshift首部添加1个</button>
+            <!-- 可以添加多个 -->
+            <button @click="list2.unshift('e','f','g')">unshift首部添加多个</button>
+            <br>
+            <!-- 删除最后一个元素 -->
+            <button @click="list2.pop()">pop删除尾部</button>
+            <!-- 删除第一个元素 -->
+            <button @click="list2.shift()">shift删除首部</button>
+            <br>
+            <!-- splic(开始删除的下标，删除的个数，插入的值) -->
+            <button @click="list2.splice(2)">splice从2号删除到尾部</button>
+            <button @click="list2.splice(2,1)">splice从2号删除1个</button>
+            <br>
+            <button @click="list2.splice(2,1,'a')">splice从2号删除1个，插入a（替换1个）</button>
+            <button @click="list2.splice(2,2,'a','b')">splice从2号删除2个，插入a，b（替换多个）</button>
+            <button @click="list2.splice(2,1,'a','b')">splice从2号删除1个，插入a，b</button>
+            <br>
+            <button @click="list2.splice(2,0,'a')">splice从2号插入a</button>
+            <button @click="list2.splice(2,0,'a','b')">splice从2号插入a，b</button>
+            <br>
+            <!-- 排序 -->
+            <button @click="list2.sort()">sort排序</button>
+            <!-- 反转 -->
+            <button @click="list2.reverse()">reverse反转</button>
+            <br>
+            <!-- 赋值替换元素，界面不会刷新 -->
+            <button @click="replace1">赋值替换元素，界面不会刷新</button>
+            <!-- 可以使用splice代替 -->
+            <button @click="replace2">使用splice替换元素</button>
+            <!-- 或者使用vue替换元素 -->
+            <button @click="replace3">使用vue替换元素</button>
+        </div>
+        <ul>
+            <li v-for="item in list2">{{item}}</li>
+        </ul>
     </div>
     <script>
         const app = new Vue({
             el: '#app',
             data: {
                 list: ['a', 'b', 'c'],
+                list2: ['a', 'b', 'c', 'd'],
                 obj: {
                     aa: 'a1',
                     bb: 'b2',
@@ -45,7 +107,19 @@
                 },
             },
             methods: {
-
+                replace1() {
+                    this.list2[2] = 'asas';
+                    console.log(this.list2);
+                },
+                replace2() {
+                    this.list2.splice(2, 1, 'asasas');
+                    console.log(this.list2);
+                },
+                replace3() {
+                    // 列表，替换的下标，替换的值
+                    Vue.set(this.list2, 0, 'vvvv');
+                    console.log(this.list2);
+                },
             },
             computed: {
 

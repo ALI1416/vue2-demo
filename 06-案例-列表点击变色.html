@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- v-for遍历数组，:class改变颜色，@click点击事件 -->
+            <li v-for="(item, index) in list" :class="{red: currentIndex === index}" @click="currentIndex = index">
+                {{index}}.{{item}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                list: ['aaa', 'bbb', 'ccc', 'ddd'],
+                currentIndex: 0,
+            },
+            methods: {
+
+            },
+            computed: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>
