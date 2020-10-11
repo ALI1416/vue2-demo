@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        app1
+        <!-- 直接在实例中调用即可显示内容 -->
+        <cpn></cpn>
+        <!-- 也可以在子标签中调用 -->
+        <div>
+            <cpn></cpn>
+        </div>
+        <!-- 局部组件只能在已注册的实例中调用 -->
+        <cpn2></cpn2>
+    </div>
+    <!-- 没有实例的无法显示 -->
+    <cpn></cpn>
+    <div id="app">
+        app2
+        <!-- 全局组件可以在不同实例中调用 -->
+        <cpn></cpn>
+        <!-- 局部组件只能在已注册的实例中调用 -->
+        <cpn2></cpn2>
+    </div>
+    <script>
+        /* 创建组件构造器对象 */
+        const cpn = Vue.extend({
+            // 模板，es6中可以使用tab键上方的`来定义字符串，支持换行
+            template: `
+            <div>
+                <p>内容</p>
+            </div>
+            `
+        });
+        const cpn2 = Vue.extend({
+            template: `
+            <div>
+                <p>内容2</p>
+            </div>
+            `
+        });
+        /* 注册组件，标签名，组件名 */
+        /* 全局组件，可以在多个vue实例中使用 */
+        Vue.component('cpn', cpn);
+        /* app实例 */
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+
+            },
+            computed: {
+
+            },
+            components: {
+                cpn2,
+            }
+        });
+        /* app2实例 */
+        const app2 = new Vue({
+            el: '#app2',
+            data: {
+
+            },
+            methods: {
+
+            },
+            computed: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

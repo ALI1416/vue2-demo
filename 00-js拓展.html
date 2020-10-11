@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<!--
+    let、const、var区别
+    字面量增强写法
+    多种for循环遍历
+    高级函数filter、map、reduce
+    箭头表达式
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+    <script>
+        /* let/const/var区别 */
+        {
+            // var没有块级作用域，可以在块外使用
+            var a = 'CK';
+            console.log(a);
+        }
+        //块外使用
+        console.log(a);
+        /* for引起的问题（if也有这个问题），无论点哪个按钮都是显示第5个 */
+        /* 在以前可以使用闭包（相当于调用外部函数）来解决问题 */
+        // var btns = document.getElementsByTagName('button');
+        // for (var i = 0; i < btns.length; i++) {
+        //     /* 引起错误的写法 */
+        //     // btns[i].addEventListener('click', function () {
+        //     //     console.log('第' + i + '个按钮被点击了');
+        //     // });
+        //     /* 闭包写法，太过复杂。不会出错是因为函数是一个作用域 */
+        //     (function (num) {
+        //         btns[num].addEventListener('click', function () {
+        //             console.log('第' + num + '个按钮被点击了');
+        //         });
+        //     })(i);
+        // }
+        /* 换成let后，有块级作用域，不存在以上问题 */
+        const btns = document.getElementsByTagName('button');
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].addEventListener('click', function () {
+                console.log('第' + i + '个按钮被点击了');
+            });
+        }
+        /* const常量 */
+        const b = 1;
+        console.log(b);
+        // a = 2;//常量不可再被赋值，会报错
+        const obj = {
+            name: 'ck',
+            gender: 'man',
+            year: '1998'
+        }
+        console.log(obj);
+        //但是常量对象里面的值可以被修改
+        obj.name = 'txf';
+        obj.gender = 'women';
+        obj.year = '1996'
+        console.log(obj);
+
+        /* 对象字面量的增强写法 */
+        const name = 'ck';
+        const gender = 'man';
+        const year = 1998;
+        // 普通写法
+        const obj2 = {
+            name: name,
+            gender: gender,
+            yaer: year,
+        }
+        console.log(obj2);
+        // 增强写法
+        const obj3 = {
+            name,
+            gender,
+            year,
+        }
+        console.log(obj3);
+        //函数对象的普通写法
+        const obj4 = {
+            abc: function () {
+
+            },
+        }
+        //函数对象的增强写法
+        const obj5 = {
+            abc() {
+
+            },
+        }
+
+        /* 3种for循环遍历 */
+        let str = ['a', 'b', 'c', 'd'];
+        //普通for循环遍历
+        let strs = '';
+        for (let i = 0; i < str.length; i++) {
+            strs += str[i];
+        }
+        console.log(strs);
+        strs = '';
+        //for-in遍历，取出下标
+        for (index in str) {
+            strs += str[index];
+        }
+        console.log(strs);
+        strs = '';
+        //for-of遍历，取出对象
+        for (item of str) {
+            strs += item;
+        }
+        console.log(strs);
+
+        /* js高级函数filter/map/reduce */
+        let num = [12, 88, 23, 45, 76, 87, 40, 8];
+        /* 普通写法 */
+        // 需求1：找出小于50的数字
+        // let num2 = [];
+        // for (item of num) {
+        //     if (item < 50) {
+        //         num2.push(item);
+        //     }
+        // }
+        // console.log(num2);
+        // // 需求2：数值x2
+        // let num3 = [];
+        // for (item of num2) {
+        //     num3.push(item * 2);
+        // }
+        // console.log(num3);
+        // // 需求3：相加
+        // let total = 0;
+        // for (item of num3) {
+        //     total += item;
+        // }
+        // console.log(total);
+        /* 高级写法 */
+        //使用filter函数
+        // 传入一个函数，函数内写执行逻辑，返回boolean，为true时添加到数组里面
+        // 返回一个数组
+        let num2 = num.filter(function (n) {
+            return n < 50;
+        });
+        console.log(num2);
+        //使用map函数
+        // 传入一个函数，返回的值添加到数组里面
+        // 返回数组
+        let num3 = num2.map(function (n) {
+            return n * 2;
+        });
+        console.log(num3);
+        //使用reduce函数
+        // 传入一个函数和初始值，函数第一个参数是前一个值，第二个是遍历的第n个对象
+        // 返回一个数值
+        // 当不写初始值时，默认为0
+        let total = num3.reduce(function (preValue, n) {
+            return preValue + n;
+        }, 0);
+        console.log(total);
+
+        // 以上函数可以一起使用
+        let total2 = num.filter(function (n) {
+            return n < 50;
+        }).map(function (n) {
+            return n * 2;
+        }).reduce(function (preValue, n) {
+            return preValue + n;
+        }, 0);
+        console.log(total2);
+
+        /* 使用箭头表达式=> */
+        // 左侧是函数传入的值，右侧是函数返回的值
+        // 传入多个参数需要写()
+        let total3 = num.filter(n => n < 50).map(n => n * 2).reduce((preValue, n) => preValue + n, 0);
+        console.log(total3);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 绑定text -->
+        <!-- v-model可以实现双向绑定，输入框中的值和data中的值可以相互改变 -->
+        <input type="text" v-model="text">
+        <br>
+        <!-- 等价于，input标签有一个原生的input属性，可以监听输入事件 -->
+        <input type="text" :value="text" @input="text = $event.target.value">
+        <br>
+        <!-- textarea也可以绑定 -->
+        <textarea cols="20" rows="2" v-model="text"></textarea>
+        <br>
+        您输入了：{{text}}
+        <br>
+        <button @click="text = 'hello Vue.js'">修改为hello Vue.js</button>
+        <br>
+        <!-- 绑定radio，v-model相同时为同一组，等同于name -->
+        <label for="a">
+            a<input type="radio" id="a" v-model="radio" value="a">
+        </label>
+        <label for="b">
+            b<input type="radio" id="b" v-model="radio" value="b">
+        </label>
+        <label for="c">
+            c<input type="radio" id="c" v-model="radio" value="c">
+        </label>
+        <br>
+        您选择了：{{radio}}
+        <br>
+        <button @click="radio = 'b'">选择b</button>
+        <br>
+        <!-- 绑定单选checkbox -->
+        <label for="cb">
+            同意协议<input type="checkbox" id="cb" v-model="cb">
+            <button :disabled="!cb">下一步</button>
+        </label>
+        <br>
+        您选择了：{{cb}}
+        <br>
+        <button @click="cb = true">选择同意</button>
+        <br>
+        <!-- 绑定多选checkbox -->
+        <label for="cba">
+            a<input type="checkbox" id="cba" v-model="cbs" value="a">
+        </label>
+        <label for="cbb">
+            b<input type="checkbox" id="cbb" v-model="cbs" value="b">
+        </label>
+        <label for="cbc">
+            c<input type="checkbox" id="cbc" v-model="cbs" value="c">
+        </label>
+        <br>
+        您选择了：{{cbs}}
+        <br>
+        <button @click="cbs = ['a','c']">只选择a,c</button>
+        <br>
+        <!-- 绑定单选select -->
+        <select v-model="opt">
+            <option value="a">a</option>
+            <option value="b">b</option>
+            <option value="c">c</option>
+        </select>
+        <br>
+        您选择了：{{opt}}
+        <br>
+        <button @click="opt = 'a'">选择a</button>
+        <br>
+        <!-- 绑定多选select -->
+        <select v-model="opts" multiple>
+            <option value="a">a</option>
+            <option value="b">b</option>
+            <option value="c">c</option>
+        </select>
+        <br>
+        您选择了：{{opts}}
+        <br>
+        <button @click="opts = ['a','c']">只选择a,c</button>
+        <br>
+        <!-- 值绑定，给定一个初始列表，来绑定到input里面 -->
+        <label :for="'cb1'+item" v-for="item in originCb1">
+            {{item}}<input type="checkbox" :id="'cb1'+item" :value="item" v-model="cb1">
+        </label>
+        <br>
+        您选择了：{{cb1}}
+        <br>
+        <button @click="cb1 = ['a','d']">只选择a,d</button>
+        <br>
+        <!-- 修饰符 -->
+        <!-- lazy懒加载，用户输入完后敲击回车或者光标失去焦点才会触发值的改变 -->
+        <input type="text" v-model="lazy1">
+        <br>
+        您输入了：{{lazy1}}
+        <br>
+        <input type="text" v-model.lazy="lazy2">
+        <br>
+        您输入了：{{lazy2}}
+        <br>
+        <!-- number类型改为数值类型 -->
+        <input type="number" v-model="num1">
+        <br>
+        您输入了：{{num1}}，类型是{{typeof num1}}
+        <br>
+        <input type="number" v-model.number="num2">
+        <br>
+        您输入了：{{num2}}，类型是{{typeof num2}}
+        <br>
+        <!-- trim去除左右两端的空格 -->
+        <input type="text" v-model="trim1">
+        <br>
+        您输入了：{{trim1}}
+        <br>
+        <input type="text" v-model.trim="trim2">
+        <br>
+        您输入了：{{trim2}}
+        <br>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                text: 'hello Vue.js',
+                radio: 'a',
+                cb: false,
+                cbs: ['b'],
+                opt: 'c',
+                opts: ['b', 'c'],
+                originCb1: ['a', 'b', 'c', 'd'],
+                cb1: ['c'],
+                lazy1: 'asd',
+                lazy2: 'abc',
+                num1: 0,
+                num2: 1,
+                trim1: '123',
+                trim2: '456',
+            },
+            methods: {
+
+            },
+            computed: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

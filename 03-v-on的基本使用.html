@@ -14,7 +14,7 @@
         <button @click="btn1">1无参不带括号</button><br>
         <!-- 完整写法 -->
         <button @click="btn2()">2无参带()</button><br>
-        <!-- 即使没有对应参数个数的方法也不会报错，会调用最合适的重载方法 -->
+        <!-- 调用的方法没有接收参数也不会报错 -->
         <button @click="btn3('参数1')">3无参带()传值</button><br>
         <!-- 传递event对象 -->
         <button @click="btn4">4有参不带括号</button><br>
@@ -87,9 +87,6 @@
                 },
                 btn3() {
                     console.log('btn3');
-                },
-                btn3(a) {
-                    console.log('btn3', '-----------', a);
                 },
                 btn4(a) {
                     console.log('btn4', '-----------', a);
