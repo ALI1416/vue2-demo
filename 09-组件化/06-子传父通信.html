@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 父组件监听子组件的自定义事件 -->
+        <!-- @自定义事件名="父组件接收的方法名" -->
+        <!-- 方法名可以不带参数，也会传递到方法里面 -->
+        <cpn @item-click="cpnClick"></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <ul>
+                <li v-for="item in list">
+                    <!-- 子组件监听点击事件 -->
+                    <button @click="btnClick(item)">{{item}}</button>
+                </li>
+            </ul>
+        </div>
+    </template>
+    <script>
+        const cpn = {
+            template: '#cpn',
+            data() {
+                return {
+                    list: ['aaa', 'bbb', 'ccc'],
+                }
+            },
+            methods: {
+                btnClick(item) {
+                    // 使用this.$emit发射一个自定义事件（事件名，传递的值）
+                    this.$emit('item-click', item);
+                    console.log('子组件发送' + item);
+                }
+            },
+        }
+        const app = new Vue({
+            el: '#app',
+            methods: {
+                cpnClick(item) {
+                    console.log('父组件收到' + item);
+                },
+            },
+            components: {
+                cpn,
+            }
+        })
+    </script>
+</body>
+
+</html>
