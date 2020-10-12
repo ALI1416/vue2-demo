@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+    </div>
+    <!-- 使用script type="text/x-template"分离组件 -->
+    <!-- <script type="text/x-template" id="cpn">
+        <div>
+            script type="text/x-template"分离组件
+        </div>
+    </script> -->
+    <!-- 使用template标签来分离组件 -->
+    <template id="cpn">
+        <div>
+            template分离组件
+        </div>
+    </template>
+    <script>
+        // 注册全局组件
+        // Vue.component('cpn', {
+        //     template: '#cpn'
+        // });
+        const app = new Vue({
+            el: '#app',
+            components: {
+                // 注册局部组件
+                'cpn': {
+                    template: '#cpn',
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

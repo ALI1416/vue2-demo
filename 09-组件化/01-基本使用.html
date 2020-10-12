@@ -46,37 +46,38 @@
             </div>
             `
         });
-        /* 注册组件，标签名，组件名 */
+        /* 注册全局组件，（标签名，组件名） */
         /* 全局组件，可以在多个vue实例中使用 */
-        Vue.component('cpn', cpn);
+        // Vue.component('cpn', cpn);
+        // 使用语法糖注册全局组件
+        Vue.component('cpn', {
+            template: `
+            <div>
+                <p>内容</p>
+            </div>
+            `
+        });
         /* app实例 */
         const app = new Vue({
             el: '#app',
-            data: {
-
-            },
-            methods: {
-
-            },
-            computed: {
-
-            },
             components: {
-                cpn2,
+                // 注册局部组件，只能在本实例中使用
+                // 标签名：组件名
+                // 也可以只写组件名，组件名就是标签名
+                // 'cpn2': cpn2,
+                // 使用语法糖注册局部组件
+                'cpn2': {
+                    template: `
+                    <div>
+                        <p>内容2</p>
+                    </div>
+                    `
+                },
             }
         });
         /* app2实例 */
         const app2 = new Vue({
             el: '#app2',
-            data: {
-
-            },
-            methods: {
-
-            },
-            computed: {
-
-            },
         })
     </script>
 </body>

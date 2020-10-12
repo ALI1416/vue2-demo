@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            组件1
+            <!-- 组件无法直接访问root组件的data -->
+            <!-- {{title}} -->
+            <br>
+            <!-- 在组件内定义data函数后返回对象就可以访问了 -->
+            {{t1}}
+        </div>
+    </template>
+    <script>
+        // const obj = {
+        //     t2: 'aaa'
+        // }
+        Vue.component('cpn', {
+            template: '#cpn',
+            // 组件的data函数，返回一个对象
+            // 因为组件可以多次调用，为了使每次的变量不会相互影响，所以需要返回一个对象
+            // 如果使用data，而不是data()，多个组件会使用同一组数据
+            data() {
+                return {
+                    t1: '组件1的标题',
+                }
+                // vue设置了组件不可以使用data，如果想使用同一组数据，可以在外部定义数据
+                // 不建议这样写
+                // return obj;
+            }
+        })
+        const app = new Vue({
+            el: '#app',
+            data: {
+                title: '标题'
+            },
+            methods: {
+
+            },
+            computed: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

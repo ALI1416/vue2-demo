@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <template id="cpn">
+        <div>
+            子组件
+            <br>
+            {{cpnMsg}}
+            <br>
+            {{cpnList}}
+        </div>
+    </template>
+    <div id="app">
+        <!-- 需要绑定事件来传递值 -->
+        <!-- 绑定事件不支持驼峰标识，必须把驼峰转成-连接才能使用，大括号表达式不用改 -->
+        <cpn :cpn-msg="msg" :cpn-list="list"></cpn>
+        <!-- 如果没有绑定，会传递字符串 -->
+        <!-- <cpn cpn-msg="msg" cpn-list="list"></cpn> -->
+        <!-- 默认值传递 -->
+        <!-- <cpn :cpn-msg="msg"></cpn> -->
+        <!-- <cpn :cpn-list="list"></cpn> -->
+        <!-- 必须参数没传递 -->
+        <!-- <cpn></cpn> -->
+    </div>
+    <script>
+        function Person(firstName, lastName) {
+            this.firstName = firstNamel
+            this.lastName = lastName;
+        }
+        const cpn = {
+            template: '#cpn',
+            // props属性，来接收父组件的值
+            // 数组接收
+            // props: ['cpnmsg', 'cpnlist'],
+            // 对象接收
+            props: {
+                // 可以限制接收的类型
+                // cpnmsg: String,
+                // cpnmsg: { String, Number },//多种类型
+                // cpnmsg: Person,//自定义类型
+                // cpnlist: Array,
+                // 对象类型
+                cpnMsg: {
+                    type: String,
+                    // 默认值
+                    default: '默认值',
+                    // 必须参数
+                    required: true,
+                },
+                cpnList: {
+                    type: Array,
+                    // 不能用以下方式写，会报错（默认值是对象或数组时）
+                    // default: ['list1', 'list2', 'list3'],
+                    // 需要用函数返回一个对象
+                    default() {
+                        return ['list1', 'list2', 'list3']
+                    },
+                    // 自定义验证类型，不符合会报错
+                    // validator(value) {
+                    //     return value.length > 5;
+                    // },
+                }
+            },
+        };
+        const app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'message',
+                list: ['a', 'b', 'c'],
+            },
+            components: {
+                cpn,
+            }
+        });
+    </script>
+</body>
+
+</html>

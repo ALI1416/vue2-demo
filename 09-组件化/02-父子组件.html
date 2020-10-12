@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn2>
+            <!-- 在父组件标签内部调用子组件无效 -->
+            <cpn1></cpn1>
+        </cpn2>
+        <!-- 外部调用也无效，因为没有注册 -->
+        <cpn1></cpn1>
+    </div>
+    <script>
+        // 子组件
+        const cpn1 = Vue.extend({
+            template: `
+                <div>
+                    cpn1
+                </div>
+            `,
+        });
+        // 父组件
+        const cpn2 = Vue.extend({
+            template: `
+                <div>
+                    cpn2
+                    <cpn1></cpn1>
+                </div>
+            `,
+            // 注册子组件
+            components: {
+                'cpn1': cpn1,
+            }
+        });
+        // 也可以把app当成组件，root组件
+        const app = new Vue({
+            el: '#app',
+            components: {
+                'cpn2': cpn2,
+            }
+        })
+    </script>
+</body>
+
+</html>
