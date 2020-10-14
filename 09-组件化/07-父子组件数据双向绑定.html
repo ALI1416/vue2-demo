@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <template id="cpn">
+        <div>
+            子组件n1：{{n1}}
+            <br>
+            子组件number1：{{number1}}
+            <br>
+            <!-- 不推荐直接使用v-model修改props中的属性值，可以把props中的值赋值到data中，来修改data的值 -->
+            <!-- 子组件输入框1：<input type="text" v-model="n1"> -->
+            <!-- 使用以下方法修改子组件中父组件传递给的数据 -->
+            子组件输入框1：<input type="text" :value="number1" @input="n1Change">
+            <br>
+            <br>
+            x100
+            <br>
+            <br>
+            子组件n2：{{n2}}
+            <br>
+            子组件number2：{{number2}}
+            <br>
+            子组件输入框2：<input type="text" :value="number2" @input="n2Change">
+        </div>
+    </template>
+    <div id="app">
+        父组件num11：{{num1}}
+        <br>
+        父组件num12：{{num2}}
+        <br>
+        <br>
+        <!-- 传递num1和num2，接收n1和n2的改变，去修改num1和num2 -->
+        <cpn :n1="num1" :n2="num2" @n1-change="n1Change" @n2-change="n2Change"></cpn>
+    </div>
+    <script>
+        const cpn = {
+            template: '#cpn',
+            // 最好不要修改props的值
+            props: {
+                n1: Number,
+                n2: Number,
+            },
+            data() {
+                return {
+                    // 定义方法去接收props的值
+                    number1: this.n1,
+                    number2: this.n2,
+                }
+            },
+            methods: {
+                n1Change(event) {
+                    this.number1 = event.target.value;// 修改本组件的值
+                    this.$emit('n1-change', this.number1);// 发射事件叫父组件修改值
+                    this.number2 = this.number1 * 100;// 修改number2的值为1的100倍
+                    this.$emit('n2-change', this.number2);//修改2父组件的值
+                },
+                n2Change(event) {
+                    this.number2 = event.target.value;
+                    this.$emit('n2-change', this.number2);
+                    this.number1 = this.number2 / 100;
+                    this.$emit('n1-change', this.number1);
+                },
+            },
+        }
+        const app = new Vue({
+            el: '#app',
+            data: {
+                num1: 12,
+                num2: 1200,
+            },
+            methods: {
+                n1Change(value) {
+                    this.num1 = parseFloat(value);
+                },
+                n2Change(value) {
+                    this.num2 = parseFloat(value);
+                },
+            },
+            components: {
+                cpn
+            },
+        })
+    </script>
+</body>
+
+</html>
