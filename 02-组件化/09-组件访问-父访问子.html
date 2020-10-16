@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <template id="cpn">
+        <div>
+            子组件
+        </div>
+    </template>
+    <div id="app">
+        <cpn></cpn>
+        <!-- 给组件一个ref值，相当于id，使父组件更容易找到子组件 -->
+        <cpn ref="cpn2"></cpn>
+        <cpn></cpn>
+        <button @click="getCpn">获取子组件</button>
+    </div>
+    <script>
+        const cpn = {
+            template: '#cpn',
+            data() {
+                return {
+                    message: 'cpnMessage',
+                }
+            },
+            methods: {
+                getMessage() {
+                    console.log('子组件' + this.message);
+                    return this.message;
+                }
+            },
+        }
+        const app = new Vue({
+            el: '#app',
+            methods: {
+                getCpn() {
+                    // 获取所有的子组件
+                    console.log(this.$children);
+                    // 获取下标为0的子组件
+                    console.log(this.$children[0]);
+                    // 调用子组件的方法
+                    console.log(this.$children[0].getMessage());
+                    // 获取子组件的data
+                    console.log(this.$children[0].message);
+                    // 不推荐直接使用this.$children获取所有子组件
+                    // 可以用this.$refs.ref值，获取对应组件
+                    console.log(this.$refs.cpn2);
+                },
+            },
+            components: {
+                cpn,
+            }
+        })
+    </script>
+</body>
+
+</html>

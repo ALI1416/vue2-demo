@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        根组件
+        <cpn></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            子组件
+            <ccpn></ccpn>
+        </div>
+    </template>
+    <template id="ccpn">
+        <div>
+            子组件的子组件
+            <br>
+            <button @click="getParent">获取父组件</button>
+        </div>
+    </template>
+    <script>
+        const ccpn = {
+            template: '#ccpn',
+            methods: {
+                getParent() {
+                    // 不推荐访问父组件，会使耦合度增加，访问根组件也很少使用
+                    // 通过this.$parent获取父组件
+                    console.log(this.$parent);
+                    console.log(this.$parent.name);
+                    // 通过this.$root获取根组件（app实例）
+                    console.log(this.$root);
+                    console.log(this.$root.name);
+                },
+            },
+        }
+        const cpn = {
+            template: '#cpn',
+            data() {
+                return {
+                    name: 'cpn',
+                }
+            },
+            components: {
+                ccpn,
+            }
+        }
+        const app = new Vue({
+            el: '#app',
+            data: {
+                name: 'root'
+            },
+            components: {
+                cpn,
+            }
+        })
+    </script>
+</body>
+
+</html>

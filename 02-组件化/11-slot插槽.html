@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .border {
+            border: 1px solid black;
+            display: inline-block;
+            padding: 2px;
+            margin: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <template id="cpn1">
+        <div>
+            cpn1
+            <div class="border">
+                <slot></slot>
+            </div>
+        </div>
+    </template>
+    <template id="cpn2">
+        <div>
+            cpn2
+            <div class="border">
+                <!-- 插槽里放入默认值 -->
+                <slot>默认值</slot>
+            </div>
+        </div>
+    </template>
+    <template id="cpn3">
+        <div>
+            cpn3
+            <div class="border">
+                <slot></slot>
+            </div>
+            <div class="border">
+                <slot></slot>
+            </div>
+        </div>
+    </template>
+    <template id="cpn4">
+        <div>
+            cpn4
+            <div class="border">
+                <!-- 给插槽起名字 -->
+                <slot name="left">左</slot>
+            </div>
+            <div class="border">
+                <slot name="center">中</slot>
+            </div>
+            <div class="border">
+                <slot>右</slot>
+            </div>
+        </div>
+    </template>
+    <div id="app">
+        <!-- 在标签内写入元素，可以替换到插槽元素 -->
+        <cpn1></cpn1>
+        <cpn1>
+            <button>按钮</button>
+        </cpn1>
+        <cpn1>
+            <b>粗体</b>
+        </cpn1>
+        <cpn1>
+            <input type="text" value="输入框">
+        </cpn1>
+        <!-- 如果传入的元素个数大于插槽数量，会把所有元素替换到插槽元素 -->
+        <cpn1>
+            <button>按钮</button>
+            <b>粗体</b>
+            <input type="text" value="输入框">
+        </cpn1>
+        <!-- 插槽里有默认值 -->
+        <cpn2></cpn2>
+        <cpn2><button>按钮</button></cpn2>
+        <!-- 如果有多个插槽，会把所有插槽内容都替换成一样的内容 -->
+        <cpn3>
+            <button>按钮</button>
+            <b>粗体</b>
+        </cpn3>
+        <!-- 如果给插槽起名字，只会替换没有名字的插槽 -->
+        <cpn4>
+            <button>按钮</button>
+        </cpn4>
+        <!-- 要替换指定插槽，需要写上插槽的名字 -->
+        <cpn4>
+            <button slot="center">按钮</button>
+        </cpn4>
+        <!-- 替换多个插槽 -->
+        <cpn4>
+            <button slot="left">按钮</button>
+            <b slot="center">粗体</b>
+        </cpn4>
+        <!-- 替换的插槽名字相同时，会同时显示 -->
+        <cpn4>
+            <button slot="center">按钮</button>
+            <b slot="center">粗体</b>
+        </cpn4>
+    </div>
+    <script>
+        const cpn1 = {
+            template: '#cpn1',
+        }
+        const cpn2 = {
+            template: '#cpn2',
+        }
+        const cpn3 = {
+            template: '#cpn3',
+        }
+        const cpn4 = {
+            template: '#cpn4',
+        }
+        const app = new Vue({
+            el: '#app',
+            components: {
+                cpn1,
+                cpn2,
+                cpn3,
+                cpn4,
+            }
+        })
+    </script>
+</body>
+
+</html>
