@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <!-- 父组件无法直接使用子组件的数据 -->
+        <!-- <cpn> -->
+        <!-- <span v-for="item in list">{{item}}-</span> -->
+        <!-- </cpn> -->
+        <cpn>
+            <!-- vue版本过低时，需要嵌套一层template才可正常使用作用域插槽 -->
+            <!-- <template slot-scope="slot"> -->
+            <!-- 通过slot-scope="slot"来获取数据，slot是别名，可以更换 -->
+            <div slot-scope="slot">
+                {{slot}}
+                <br>
+                {{slot.data}}
+                <br>
+                <!-- 通过slot.xx来访问传递来的数据 -->
+                <span v-for="item in slot.data">{{item}}-</span>
+                <br>
+                <!-- join('-')拼接字符串 -->
+                <span v-for="item in slot.data.join('-')">{{item}}</span>
+            </div>
+            <!-- </template> -->
+        </cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <!-- 通过:data="list"传递数据，data是别名，可以更换，list是要传递的数据 -->
+            <slot :data="list">
+                <ul>
+                    <li v-for="item in list">{{item}}</li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+    <script>
+        const cpn = {
+            template: '#cpn',
+            data() {
+                return {
+                    list: ['a', 'b', 'c', 'd'],
+                }
+            }
+        }
+        const app = new Vue({
+            el: '#app',
+            components: {
+                cpn,
+            }
+        })
+    </script>
+</body>
+
+</html>
