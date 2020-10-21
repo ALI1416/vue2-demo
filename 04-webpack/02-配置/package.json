@@ -1,0 +1,19 @@
+{
+  "name": "ck",
+  "version": "1.0.0",
+  "description": "",
+  "//main": "包管理文件，main是入口文件名",
+  "main": "main.js",
+  "scripts": {
+    "//scripts": "脚本，运行方式：npm run 命令名",
+    "//build": "在cmd执行webpack时会执行全局的，使用npm run build会执行本地的",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "//devDependencies": "开发时依赖（本地，非全局），安装方式npm install 包名@版本号 --save-dev",
+    "webpack": "^5.1.3",
+    "webpack-cli": "^4.1.0"
+  }
+}
