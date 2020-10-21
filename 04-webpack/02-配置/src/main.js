@@ -8,3 +8,5 @@ console.log(b);
 
 //依赖css文件
 require('./css/a.css')
+// 依赖less文件
+require('./css/b.less')
