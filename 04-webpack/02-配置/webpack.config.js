@@ -1,8 +1,15 @@
 // 使用webpack打包需要使用webpack和webpack-cli
-// 使用npm install --save-dev webpack和npm install --save-dev webpack-cli进行安装
+// 使用npm install --save-dev webpack@4和npm install --save-dev webpack-cli进行安装
+// 合并写法npm install --save-dev webpack@4 webpack-cli
 
 // 导入node的全局模块path
 const path = require('path');
+// 导入vue-loader插件，vue-loader大于15需要
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+// 导入webpack插件
+const webpack = require('webpack');
+// 导入html-webpack-plugin插件
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // 配置以下模块可以直接使用webpack进行打包
 module.exports = {
@@ -16,7 +23,8 @@ module.exports = {
         // 文件名
         filename: 'bundle.js',
         // 所有涉及到url的文件，在文件名前都会加上dist/
-        publicPath: 'dist/'
+        // 如果使用自动生成html，则不需要这个
+        // publicPath: 'dist/'
     },
     // 模式
     module: {
@@ -24,7 +32,7 @@ module.exports = {
         rules: [
             // 要加载和解析css文件，需要使用css-loader和style-loader
             // 其中css-loader负责加载文件、style-loader负责解析文件到DOM
-            // 使用npm install --save-dev css-loader和npm install --save-dev style-loader进行安装
+            // 安装 npm install --save-dev css-loader style-loader
             {
                 // 正则表达式，匹配以.css结尾的文件
                 test: /\.css$/,
@@ -49,15 +57,15 @@ module.exports = {
                 ]
             },
             // 解析url文件需要url-loader和file-loader
-            // 使用npm install --save-dev url-loader和npm install --save-dev file-loader
+            // 安装 npm install --save-dev url-loader file-loader
             {
-                test: /\.(png|jpg|jpeg|gif)/,
+                test: /\.(png|jpg|jpeg|gif)$/,
                 use: [
                     {
                         loader: 'url-loader',
                         // 选项
                         options: {
-                            // 图片限制，默认8192（8kb），小于limit时，会把图片转换为base64格式
+                            // 图片限制，推荐8192（8kb），小于limit时，会把图片转换为base64格式
                             // 如果大于，会使用file-loader进行加载，会把文件进行打包到dist
                             // 打包到dist文件会找不到，需要在output中加入publicPath: 'dist/'
                             limit: 819,
@@ -67,7 +75,53 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            // ES6转ES5（许多浏览器不支持ES6语法，所以需要转为大多数浏览器都支持的ES5语法）
+            // 安装 npm install --save-dev babel-loader@7 babel-core babel-preset-es2015
+            // babel-loader需要7版的才能使用
+            // babel-loader版本过低，需要webpack@4才能生效
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_compoents)/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            // 转为ES5
+                            presets: ['es2015']
+                        }
+                    }
+                ]
+            },
+            // 安装vue
+            // npm install --save vue vue-cli
+            // 安装vue解析器
+            // npm install --save-dev vue-loader vue-template-compiler
+            {
+                test: /\.vue$/,
+                use: ['vue-loader']
             }
+
         ]
-    }
+    },
+    resolve: {
+        // 忽略拓展名
+        extensions: ['.js', '.css', '.vue'],
+        alias: {
+            // vue默认使用runtime-only进行编译，但是代码中不能有template，需要切换到runtime-complier才可
+            'vue$': 'vue/dist/vue.esm.js'
+        }
+    },
+    plugins: [
+        // vue-loader插件
+        new VueLoaderPlugin(),
+        // 添加版权声明，在生成js文件的首部添加
+        new webpack.BannerPlugin('版权声明'),
+        // html-webpack-plugin插件，可以把html文件打包进dist目录
+        // npm install --save-dev html-webpack-plugin
+        new HtmlWebpackPlugin({
+            // 插入body内容，不需要写script
+            template: 'index2.html'
+        }),
+    ]
 }
