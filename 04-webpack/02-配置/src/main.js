@@ -1,18 +1,18 @@
 /* CommonJS导入 */
-// const { fa, fb } = require('./js/a')
-// fa();
-// fb();
+const { fa, fb } = require('./js/a')
+fa();
+fb();
 
 /* ES6导入 */
-// import { a, b } from './js/b'
-// console.log(a);
-// console.log(b);
+import { a, b } from './js/b'
+console.log(a);
+console.log(b);
 
 /* 导入css文件 */
-// require('./css/a.css')
+require('./css/a.css')
 
 /* 导入less文件 */
-// require('./css/b.less')
+require('./css/b.less')
 
 /* 使用vue，不加路径会到node_modules中去寻找 */
 import Vue from 'vue'

@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      cpn: "我是组件cpn",
+      cpn: "我是组件Cpn",
     };
   },
 };

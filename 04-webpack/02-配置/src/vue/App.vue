@@ -15,7 +15,7 @@ import Cpn from "./Cpn";
 export default {
   data() {
     return {
-      msg: "Hi Vue",
+      msg: "Hi Vue.js",
     };
   },
   components: {

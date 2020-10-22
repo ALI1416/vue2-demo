@@ -1,6 +1,8 @@
+/* 原始配置，在最外层 */
+
 // 使用webpack打包需要使用webpack和webpack-cli
-// 使用npm install --save-dev webpack@4和npm install --save-dev webpack-cli进行安装
-// 合并写法npm install --save-dev webpack@4 webpack-cli
+// 使用npm install --save-dev webpack@4和npm install --save-dev webpack-cli@3进行安装
+// 合并写法npm install --save-dev webpack@4 webpack-cli@3
 
 // 导入node的全局模块path
 const path = require('path');
@@ -25,6 +27,11 @@ module.exports = {
         // 所有涉及到url的文件，在文件名前都会加上dist/
         // 如果使用自动生成html，则不需要这个
         // publicPath: 'dist/'
+    },
+    // 优化
+    optimization: {
+        // 代码压缩
+        minimize: false
     },
     // 模式
     module: {
@@ -104,14 +111,17 @@ module.exports = {
 
         ]
     },
+    // 解决问题
     resolve: {
         // 忽略拓展名
         extensions: ['.js', '.css', '.vue'],
+        // 别名
         alias: {
             // vue默认使用runtime-only进行编译，但是代码中不能有template，需要切换到runtime-complier才可
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
+    // 插件
     plugins: [
         // vue-loader插件
         new VueLoaderPlugin(),
@@ -123,5 +133,15 @@ module.exports = {
             // 插入body内容，不需要写script
             template: 'index2.html'
         }),
-    ]
+    ],
+    // 服务器，需要webpack-cli@3
+    // npm install --save-dev webpack-dev-server 
+    devServer: {
+        // 端口号，默认8080
+        port: 80,
+        // 要服务的文件夹
+        contentBase: './dist',
+        // 实时监听
+        inline: true,
+    }
 }
