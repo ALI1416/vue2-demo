@@ -181,6 +181,75 @@
         // 传入多个参数需要写()
         let total3 = num.filter(n => n < 50).map(n => n * 2).reduce((preValue, n) => preValue + n, 0);
         console.log(total3);
+
+        /* 箭头函数拓展 */
+        // 箭头函数主要用在：传入参数是函数时
+        // 原始函数写写法
+        const a1 = function () {
+            return 'a1';
+        }
+        console.log(a1());
+        // 箭头函数无参写法
+        const a2 = () => {
+            return 'a2';
+        }
+        console.log(a2());
+        // 只有1个参数，可以省略括号
+        const a3 = n => {
+            return n / 2;
+        }
+        console.log(a3(88));
+        // 多个参数
+        const a4 = (m, n) => {
+            return m + n;
+        }
+        console.log(a4(3, 6));
+        // 只有1行代码，可以省略return和大括号
+        const a5 = (m, n) => m * n;
+        console.log(a5(5, 7));
+        // 特殊：只有1个参数，1行代码
+        const a6 = n => n * n;
+        console.log(a6(9));
+
+        /* 箭头函数中this的指向 */
+        // this是由内向外查找，直到找到this停止
+        // function ()是由Window回调的，所以是Window
+        // () =>不是回调，setTimeout中没有this，a()中有this是obj1
+        const obj1 = {
+            a() {
+                console.log(this);  //obj1
+
+                setTimeout(function () {
+                    console.log(this);  //Window
+                })
+                setTimeout(() => {
+                    console.log(this);  //obj1
+                })
+
+                setTimeout(function () {
+                    setTimeout(function () {
+                        console.log(this);  //Window
+                    })
+                })
+                setTimeout(function () {
+                    setTimeout(() => {
+                        console.log(this);  //Window
+                    })
+                })
+
+                setTimeout(() => {
+                    setTimeout(function () {
+                        console.log(this);  //Window
+                    })
+                })
+                setTimeout(() => {
+                    setTimeout(() => {
+                        console.log(this);  //obj1
+                    })
+                })
+            }
+        }
+        obj1.a();
     </script>
 </body>
 

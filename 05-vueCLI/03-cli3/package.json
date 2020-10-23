@@ -2,6 +2,8 @@
   "name": "03-cli3",
   "version": "0.1.0",
   "private": true,
+  "//scripts-serve": "启动服务vue-cli-service serve",
+  "//scripts-build": "构建项目vue-cli-service build",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
@@ -10,6 +12,7 @@
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
+  "//devDependencies-@vue/cli-service": "使用@vue/cli-service省略了很多配置",
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",

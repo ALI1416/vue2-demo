@@ -13,8 +13,11 @@
   },
   "author": "",
   "license": "ISC",
-  "//devDependencies": "开发时依赖（不会打包进项目），npm install --save-dev 包名@版本号（不加@版本号是最新版）",
+  "//devDependencies1": "开发时依赖（不会打包进项目），npm install --save-dev 包名@版本号（不加@版本号是最新版）",
   "//devDependencies2": "手动更改版本号需要执行npm install进行安装",
+  "//devDependencies版本号说明1": "版本号前什么都不加：安装此版本。",
+  "//devDependencies版本号说明2": "版本号前加~：例如~1.2.3安装1.2.x。",
+  "//devDependencies版本号说明3": "版本号前加^：例如^1.2.3安装1.x.x。",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
