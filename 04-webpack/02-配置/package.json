@@ -35,7 +35,6 @@
   },
   "//dependencies": "运行时依赖（会打包进项目），npm install --save 包名@版本号（不加@版本号是最新版）",
   "dependencies": {
-    "vue": "^2.6.12",
-    "vue-cli": "^2.9.6"
+    "vue": "^2.6.12"
   }
 }

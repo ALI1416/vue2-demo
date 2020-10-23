@@ -1,0 +1,20 @@
+root = true
+
+[*]
+# 编码：utf8
+charset = utf-8
+# 占位符样式：空格
+indent_style = space
+# 占位符长度：2
+indent_size = 2
+# 换行符：LF
+# 回车CR：把光标移动到当前行的开头，用符号’\r’表示，ascii码是13，十六进制是0x0d
+# 换行LF：把光标垂直移动到下一行，用符号‘\n’表示，ascii码是10，十六进制是0x0a（不是移动到下一行的开头，而是垂直，不改变水平位置）
+# CRLF：Dos和Windows采用回车+换行CR/LF表示下一行
+# LF:而UNIX/Linux采用换行符LF表示下一行
+# CR:苹果机(MAC OS系统)则采用回车符CR表示下一行
+end_of_line = lf
+# 行尾自动插入空行：true
+insert_final_newline = true
+# 去除多余空格：true
+trim_trailing_whitespace = true

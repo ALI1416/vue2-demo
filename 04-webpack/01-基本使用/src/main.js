@@ -1,4 +1,9 @@
 /* 入口文件 */
+
+// npm官网下载速度较慢，需要切换镜像源
+// 设置淘宝源 npm config set registry https://registry.npm.taobao.org
+// 查看源 npm config get registry
+
 // 使用webpack必须安装webpack和webpack-cli包（全局）
 // 使用以下命令npm install webpack -g和npm install webpack-cli -g
 // webpack打包支持AMD,CMD,CommonJS,ES6等打包规范

@@ -101,7 +101,7 @@ module.exports = {
                 ]
             },
             // 安装vue
-            // npm install --save vue vue-cli
+            // npm install --save vue
             // 安装vue解析器
             // npm install --save-dev vue-loader vue-template-compiler
             {
