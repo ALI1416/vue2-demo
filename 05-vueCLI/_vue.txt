@@ -22,11 +22,20 @@ E:\vue\05-vueCLI>vue init webpack 01-cli2 新建vuecli2模板到01-cli2文件夹
 目录/文件	          说明
 build               webpack配置。
 config              发布/开发环境配置。
-dist                打包后的项目。
+dist                打包后的项目:
+                      css:          样式文件：
+                        app.xxx.css:      业务css（自己写的）。
+                      js:           js代码：
+                        数字.xxx.js        懒加载组件js。
+                        app.xxx.js:       业务js。
+                        manifest.xxx.js   底层支撑js（webpack等）。
+                        vender.xxx.js     第三方js（vue等）。
+                      index.html    网站首页。
 node_modules        npm依赖。
 src	                开发目录：
                       assets:       资源文件。可能会打包进js文件内，并且会重命名。
                       components:   组件。
+                      router:       路由。
                       App.vue:      网站入口。
                       main.js:      项目入口。
 static              静态资源。不会打包，原封不动的复制。
