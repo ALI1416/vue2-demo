@@ -48,37 +48,63 @@ const routes = [
     path: '/A',
     // 对应的组件
     component: A,
+    // 元数据（描述数据的数据）
+    meta: {
+      // 标题
+      title: 'A'
+    },
     // 嵌套路由
     children: [
-      {
-        // 默认子路径可以填/或空
-        path: '',
-        redirect: 'A_A'
-      },
+      // 关闭默认路由，去A.vue记录子路径
+      // {
+      //   // 默认子路径可以填/或空
+      //   path: '',
+      //   redirect: 'A_A'
+      // },
       {
         // 子路径，不能加/，也不能加父组件的路径
         path: 'A_A',
-        component: A_A
+        component: A_A,
+        meta: {
+          title: 'A_A'
+        }
       },
       {
         path: 'A_B',
-        component: A_B
+        component: A_B,
+        meta: {
+          title: 'A_B'
+        }
       },
     ]
   },
   {
     path: '/B',
-    component: B
+    component: B,
+    meta: {
+      title: 'B'
+    },
+    // 路由独享守卫
+    beforeEnter: (to, from, next) => {
+      console.log('B路由独享守卫beforeEnter');
+      next();
+    },
   },
   {
     // 动态路由params要加上:参数名
     path: '/C/:idC',
-    component: C
+    component: C,
+    meta: {
+      title: 'C'
+    }
   },
   {
-    // 动态路由pquery什么都不用加
+    // 动态路由query什么都不用加
     path: '/D',
-    component: D
+    component: D,
+    meta: {
+      title: 'D'
+    }
   }
 ]
 
@@ -92,5 +118,24 @@ const router = new Router({
   // linkActiveClass: 'active'
 })
 
+// 前置守卫（guard）（钩子，hook，回调）页面跳转前执行
+// 全局前置导航守卫router.beforeEach((去,来自,下一步)=>{})
+router.beforeEach((to, from, next) => {
+  console.log('router.beforeEach');
+  // 修改标题
+  // 使用父页面的标题
+  // document.title = to.matched[0].meta.title;
+  // 使用子页面的标题
+  document.title = to.meta.title;
+  // 进行下一步（必须调用）
+  next();
+  // 可以切换路径
+  // next('\B');
+})
+
+// 后置守卫，页面跳转后执行（不需要手动执行next()）
+router.afterEach((to, from) => {
+  console.log('router.afterEach');
+})
 // 4、导出router
 export default router

@@ -4,6 +4,12 @@
 <script>
 export default {
   name: "B",
+  created() {
+    console.log("A created");
+  },
+  destroyed() {
+    console.log("A destroyed");
+  },
 };
 </script>
 <style scoped>

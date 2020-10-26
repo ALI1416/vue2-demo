@@ -44,7 +44,11 @@
     显示的页面
     <br />
     <br />
-    <router-view></router-view>
+    <!-- keep-alive保活，可以使以前的页面不被销毁 -->
+    <!-- include包含，exclude排除，组件名，用逗号,分开 -->
+    <keep-alive exclude="B">
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -72,18 +76,62 @@ export default {
     AClick() {
       // $router是vue-router中内置属性，push压入栈，replace替换
       // 这样会出现问题，要跳转的页面和当前页面url相同时会报错
-      this.$router.push("/A");
-      // this.$router.replace('/A');
+      if (this.$route.path != "/A") {
+        this.$router.push("/A");
+        // this.$router.replace('/A');
+      }
     },
     BClick() {
-      this.$router.push("/B");
+      if (this.$route.path != "/B") {
+        this.$router.push("/B");
+      }
     },
     CClick() {
-      this.$router.push("/C/" + this.idC);
+      if (this.$route.path != "/C/" + this.idC) {
+        this.$router.push("/C/" + this.idC);
+      }
     },
     DClick() {
-      this.$router.push(this.queryD);
+      if (this.$route.path != this.queryD.path) {
+        this.$router.push(this.queryD);
+      }
     },
+  },
+  /* 生命周期 */
+  // 创建前
+  beforeCreate() {
+    console.log("beforeCreate");
+  },
+  // 创建完成
+  created() {
+    console.log("created");
+  },
+  // 挂载前
+  beforeMount() {
+    console.log("beforeMount");
+  },
+  // 挂载完成
+  mounted() {
+    console.log("mounted");
+  },
+  // 更新前
+  beforeUpdate() {
+    console.log("beforeUpdate");
+  },
+  // 更新完成
+  updated() {
+    console.log("updated");
+    // 可以在此处更改标题，但是比较麻烦
+    // 推荐到router去更改
+    // document.title = "首页";
+  },
+  // 销毁前
+  beforeDestroy() {
+    console.log("beforeDestroy");
+  },
+  // 销毁完成
+  destroyed() {
+    console.log("destroyed");
   },
 };
 </script>
