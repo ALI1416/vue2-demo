@@ -250,6 +250,143 @@
             }
         }
         obj1.a();
+
+        /* Promise的基本使用 */
+        // 如果要发送多个嵌套异步请求（比如ajax），不进行管理代码逻辑会非常乱
+
+        // 默认方式（使用setTimeout代替ajax）
+        // 第一层
+        setTimeout(() => {
+            console.log('1默认方式');
+            // 第二层
+            setTimeout(() => {
+                console.log('2默认方式');
+                // 第三层
+                setTimeout(() => {
+                    console.log('3默认方式');
+                }, 100)
+            }, 100)
+        }, 1000)
+
+        // 使用Promise进行管理（异步）（使用setTimeout代替ajax）
+        // Promise是一个对象，接收2个参数
+        // resolve(解决)和reject(拒绝)（可选）是函数，可以表示是否符合条件
+        // 如果是resolve则进行then(然后)，是reject进行catch(捕获)
+        // 第一层
+        new Promise((resolve, reject) => {
+            // 这里写ajax请求，不要写业务代码
+            // 一般成功调用resolve，失败调用reject
+            // 第一层请求
+            setTimeout(() => {
+                // 可以传递数据
+                resolve('1PromiseOk')
+                // reject('1PromiseErr')
+            }, 2000)
+            // 第一层成功
+        }).then(data => {
+            // 如果调用了resolve会执行then
+            // then接收函数参数，把成功的业务代码写这里
+            console.log(data);
+            // 第二层
+            return new Promise((resolve, reject) => {
+                // 第二层请求
+                setTimeout(() => {
+                    // 如果某一层调用了reject方法，则后面的不会执行
+                    // reject('2PromiseErr')
+                    resolve('2PromiseOk')
+                }, 100)
+            })
+            // 第二层成功
+        }).then(data => {
+            console.log(data);
+            // 第三层
+            return new Promise((resolve, reject) => {
+                // 第三层请求
+                setTimeout(() => {
+                    // resolve('3PromiseOk')
+                    reject('3PromiseErr')
+                }, 100)
+            })
+            // 第三层成功
+        }).then(data => {
+            console.log(data);
+            // 所有的失败
+        }).catch(err => {
+            // 如果调用了reject会执行catch
+            // catch接收函数参数，把失败业务代码写这里
+            console.log(err);
+        })
+        // then还可以传递2个参数，第一个是resolve，第二个是reject
+        // }).then(() => {
+        //     console.log(data);
+        // }, err => {
+        //     console.log(err);
+        // })
+
+        // 使用Promise进行管理（非异步）
+        new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('非异步1PromiseOk')
+            }, 3000)
+        }).then(data => {
+            console.log(data);
+            // 不进行异步请求时，可以直接返回Promise.resolve或Promise.reject
+            return Promise.resolve('非异步2PromiseOk')
+            // return Promise.reject('非异步2PromiseErr')
+        }).then(data => {
+            console.log(data);
+            // 还可以把Promise.resolve和Promise.reject简写为return和throw
+            // return '非异步3PromiseOk'
+            throw '非异步3PromiseErr'
+        }).then(data => {
+            console.log(data);
+        }).catch(err => {
+            console.log(err);
+        })
+
+        // 使用普通方法进行多请求处理（比较麻烦）
+        // 保存请求是否返回结果
+        let isR1 = false
+        let isR2 = false
+        // 请求1
+        setTimeout(() => {
+            isR1 = true
+            handleR()
+        }, 4000)
+        // 请求2
+        setTimeout(() => {
+            isR2 = true
+            handleR()
+        }, 100)
+        // 请求处理
+        function handleR() {
+            if (isR1 && isR2) {
+                console.log('handleR');
+            }
+        }
+
+        // 使用Promise进行管理（多请求）
+        // 传入一个数组，数组里是Promise对象
+        Promise.all([
+            new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('Promise.all.Ok1')
+                    // reject('Promise.all.Err1')
+                }, 5000)
+            }),
+            new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('Promise.all.Ok2')
+                    // reject('Promise.all.Err2')
+                }, 100)
+            })
+        ]).then(results => {
+            // 接收一个结果集
+            console.log(results);
+        }).catch(err => {
+            // 捕获异常
+            console.log(err);
+        })
     </script>
 </body>
 
