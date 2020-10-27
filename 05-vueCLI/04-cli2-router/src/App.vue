@@ -40,13 +40,13 @@
     <button @click="DClick">D页面（js跳转，query查询传递）</button>
     <br />
     <br />
-    <!-- router-view是要显示的页面 -->
     显示的页面
     <br />
     <br />
     <!-- keep-alive保活，可以使以前的页面不被销毁 -->
     <!-- include包含，exclude排除，组件名，用逗号,分开 -->
     <keep-alive exclude="B">
+      <!-- router-view是要显示的页面 -->
       <router-view></router-view>
     </keep-alive>
   </div>

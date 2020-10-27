@@ -1,21 +1,23 @@
 <template>
   <div id="tab-bar">
-    <div id="tab-bar-item">
+    <!-- 2、抽取到TabBarItem.vue -->
+    <slot></slot>
+    <!-- <div class="tab-bar-item">
       <img src="../../assets/img/tabbar/home.svg" alt="" />
       <div>首页</div>
     </div>
-    <div id="tab-bar-item">
+    <div class="tab-bar-item">
       <img src="../../assets/img/tabbar/shopcart.svg" alt="" />
       <div>购物车</div>
     </div>
-    <div id="tab-bar-item">
+    <div class="tab-bar-item">
       <img src="../../assets/img/tabbar/order.svg" alt="" />
       <div>订单</div>
     </div>
-    <div id="tab-bar-item">
+    <div class="tab-bar-item">
       <img src="../../assets/img/tabbar/profile.svg" alt="" />
       <div>我的</div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -26,8 +28,6 @@ export default {
 </script>
 
 <style scoped>
-/* style中导入全局配置使用@import */
-@import "../../assets/css/base.css";
 #tab-bar {
   padding: 2px;
   display: flex;
@@ -39,14 +39,15 @@ export default {
   /* 元素添加阴影：水平阴影的位置，垂直阴影的位置（，模糊距离，阴影的大小，阴影的颜色，从外层的阴影（开始时）改变阴影内侧阴影） */
   box-shadow: 0px -1px 1px #eee;
 }
-#tab-bar-item {
+/* 2、抽取到TabBarItem.vue */
+/* .tab-bar-item {
   flex: 1;
-  text-align: center;
-  /* 使用49px的比较多 */
-  height: 49px;
+  text-align: center; */
+/* 使用49px的比较多 */
+/* height: 49px;
 }
-#tab-bar-item img {
+.tab-bar-item img {
   height: 24px;
   width: 24px;
-}
+} */
 </style>
