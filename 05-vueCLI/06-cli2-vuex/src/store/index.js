@@ -6,7 +6,7 @@
 // 2、解压后安装项目所需要的npm包 npm install
 // 3、编译项目文件 npm run build
 // 4、游览器进入扩展程序页面，点击“加载已解压的扩展程序...”按钮（需要勾选“开发者模式”）
-// 5、选择 vue-devtools\shells\chrome文件夹。（已上传到网盘https://lanzous.com/iAszSht6x2h）
+// 5、选择 vue-devtools\shells\chrome文件夹。（本项目static/vue-devtools中有解压版和crx版）
 
 /* 调试方法 */
 // 1、打开控制台，找到Vue
@@ -25,6 +25,44 @@ import * as types from './mutations-types'
 // 1、安装插件
 Vue.use(Vuex)
 
+const moduleA = {
+    state: {
+        name: 'moduleA.name'
+    },
+    getters: {
+        name2(state) {
+            // state是本模块内的state
+            return state.name + '222';
+        },
+        name3(state, getters) {
+            // getters是本模块内的getters
+            return getters.name2 + '333';
+        },
+        name4(state, getters, rootState) {
+            // rootState是根的state
+            return getters.name3 + rootState.counter;
+        },
+    },
+    mutations: {
+        // 不要和root内mutation同名
+        changeName(state, payload) {
+            // state是本模块内的state
+            state.name = payload;
+        }
+    },
+    actions: {
+        asyncActionModule(context) {
+            setTimeout(() => {
+                // context是本模块内
+                // 使用context.commit只提交本模块内的mutations
+                context.commit('changeName', 'ActionModule');
+            }, 1000)
+        }
+    },
+    // 一般不在模块中嵌套模块
+    // modules: {}
+}
+
 // 2、创建对象，需要调用Vuex.Store方法
 const store = new Vuex.Store({
     // 状态（保存变量）
@@ -34,7 +72,8 @@ const store = new Vuex.Store({
             name: 'ck',
             year: '1998',
             gender: 'man'
-        }
+        },
+        async: ''
     },
     // 变化（同步操作）
     mutations: {
@@ -73,10 +112,46 @@ const store = new Vuex.Store({
             // 对象（要修改的数组，对象名）
             Vue.delete(state.profile, 'year')
         },
+        // mutations使用异步请求时，vue-tools可能无法监听
+        asyncMutation(state) {
+            setTimeout(() => {
+                // 页面显示正常，vue-tools显示错误
+                state.async += 'Mutation ';
+            }, 1000)
+        },
+        // 同步操作，被asyncAction调用
+        syncMutation(state) {
+            state.async += 'Action ';
+        },
     },
     // 行动（异步操作）
     actions: {
-
+        // 异步操作，参数是context相当于$store
+        asyncAction(context) {
+            setTimeout(() => {
+                // 使用context.commit执行mutations里的同步操作
+                context.commit('syncMutation');
+            }, 1000)
+        },
+        // 函数回调，第二个参数可以传递数值
+        asyncAction1(context, payload) {
+            setTimeout(() => {
+                context.commit('syncMutation');
+                console.log(payload.message);
+                // 调用对方的成功函数
+                payload.success('asyncAction1返回值');
+            }, 1000)
+        },
+        // Promise回调
+        asyncAction2(context, payload) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    context.commit('syncMutation');
+                    console.log(payload);
+                    resolve('asyncAction2返回值');
+                }, 1000)
+            })
+        },
     },
     // 相当于组件中的computed计算属性
     getters: {
@@ -96,11 +171,11 @@ const store = new Vuex.Store({
             return n => {
                 return state.counter * n
             }
-        }
+        },
     },
-    // 
+    // 模块，可以划分为小的模块，模块中可以包含state/mutations/getters/actions/modules
     modules: {
-
+        a: moduleA
     }
 })
 

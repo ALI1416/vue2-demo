@@ -24,6 +24,32 @@
     <button @click="addProfileInfo">新增</button>
     <button @click="delProfileInfo">删除</button>
     <br />
+    异步请求：{{ $store.state.async }}
+    <br />
+    <button @click="asyncMutation">Mutation</button>
+    <button @click="asyncAction">Action</button>
+    <button @click="asyncAction1">Action 函数回调</button>
+    <button @click="asyncAction2">Action Promise回调</button>
+    <br />
+    模块：
+    <br />
+    <!-- 需要通过 $store.state.模块名.属性名 来使用属性 -->
+    模块内state：{{ $store.state.a.name }}
+    <br />
+    <button @click="changeName">模块内Mutation修改state</button>
+    <br />
+    <!-- getters方法不变，和root相同 -->
+    模块内getter：
+    <br />
+    {{ $store.getters.name2 }}
+    <br />
+    {{ $store.getters.name3 }}
+    <br />
+    {{ $store.getters.name4 }}
+    <br />
+    <button @click="actionModule">ActionModule</button>
+    <br />
+    <br />
     <hello-vuex></hello-vuex>
   </div>
 </template>
@@ -79,6 +105,40 @@ export default {
     },
     delProfileInfo() {
       this.$store.commit("delProfileInfo");
+    },
+    asyncMutation() {
+      this.$store.commit("asyncMutation");
+    },
+    asyncAction() {
+      // 调用action方法使用this.$store.dispatch
+      this.$store.dispatch("asyncAction");
+    },
+    // 函数回调
+    asyncAction1() {
+      this.$store.dispatch("asyncAction1", {
+        message: "asyncAction1携带的信息",
+        success(res) {
+          console.log("asyncAction1函数回调成功");
+          console.log(res);
+        },
+      });
+    },
+    // Promise回调
+    asyncAction2() {
+      // 由于$store.dispatch返回的是Promise类型，所以可以直接调用then方法
+      this.$store
+        .dispatch("asyncAction2", "asyncAction2携带的信息")
+        .then((res) => {
+          console.log("asyncAction2Promise回调成功");
+          console.log(res);
+        });
+    },
+    // 调用模块内mutation，和root的相同，不要和root内mutation同名
+    changeName() {
+      this.$store.commit("changeName", "changeName");
+    },
+    actionModule() {
+      this.$store.dispatch("asyncActionModule");
     },
   },
 };
