@@ -211,6 +211,16 @@
         const a6 = n => n * n;
         console.log(a6(9));
 
+        /* prototype原型 */
+        // Object.prototype可以向所有变量加上一个属性
+        const aaa = {
+            name: 'aaa'
+        }
+        Object.prototype.aaa = aaa;
+        const bbb = 'bbb';
+        console.log('Object.prototype.aaa');
+        console.log(bbb.aaa);
+
         /* 箭头函数中this的指向 */
         // this是由内向外查找，直到找到this停止
         // function ()是由Window回调的，所以是Window
@@ -350,14 +360,16 @@
         let isR2 = false
         // 请求1
         setTimeout(() => {
+            console.log('1多请求');
             isR1 = true
             handleR()
         }, 4000)
         // 请求2
         setTimeout(() => {
+            console.log('2多请求');
             isR2 = true
             handleR()
-        }, 100)
+        }, 4100)
         // 请求处理
         function handleR() {
             if (isR1 && isR2) {
@@ -370,15 +382,17 @@
         Promise.all([
             new Promise((resolve, reject) => {
                 setTimeout(() => {
+                    console.log('1Promise多请求');
                     resolve('Promise.all.Ok1')
                     // reject('Promise.all.Err1')
                 }, 5000)
             }),
             new Promise((resolve, reject) => {
                 setTimeout(() => {
+                    console.log('2Promise多请求');
                     resolve('Promise.all.Ok2')
                     // reject('Promise.all.Err2')
-                }, 100)
+                }, 5100)
             })
         ]).then(results => {
             // 接收一个结果集
