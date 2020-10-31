@@ -1,0 +1,70 @@
+安装cli
+npm install -g @vue/cli
+
+
+生成vue-cli3模板
+vue create 文件夹名
+
+09-cli3-init使用了Router和Vuex
+
+E:\vue\05-vueCLI>vue create 09-cli3-init 新建vuecli3模板到09-cli3-init文件夹
+Vue CLI v4.5.8
+? Please pick a preset: Manually select features 选择配置
+Default ([Vue 2] babel, eslint) 默认配置1：使用Vue 2, babel, eslint
+Default (Vue 3 Preview) ([Vue 3] babel, eslint) 默认配置2：使用Vue 3, babel, eslint
+> Manually select features 手动选择
+? Check the features needed for your project: Router, Vuex 选择使用的插件：按空格选择/关闭，回车下一步
+ ( ) Choose Vue version
+ ( ) Babel
+ ( ) TypeScript
+ ( ) Progressive Web App (PWA) Support
+ (*) Router
+>(*) Vuex
+ ( ) CSS Pre-processors CSS
+ ( ) Linter / Formatter 取消eslint
+ ( ) Unit Testing
+ ( ) E2E Testing
+? Use history mode for router? (Requires proper server setup for index fallback in production) Yes 路由模式是否设置成history
+? Where do you prefer placing config for Babel, ESLint, etc.? In dedicated config files 配置文件储存方式
+> In dedicated config files 放到独自的配置文件
+  In package.json 放到package.json
+? Save this as a preset for future projects? (y/N) Yes 是否单独保存这个配置
+? Save preset as: ck 保存的名字
+
+当下次创建项目时，会出现刚才保存的配置
+Vue CLI v4.5.8
+? Please pick a preset: (Use arrow keys)
+> ck ([Vue 2] babel)
+Default ([Vue 2] babel, eslint)
+Default (Vue 3 Preview) ([Vue 3] babel, eslint)
+Manually select features
+
+目录/文件			说明
+dist				打包后的项目。
+node_modules		npm依赖。
+public				静态资源。不会打包，原封不动的复制。
+					favicon.ico	网站图标。
+					index.html	网站首页。
+src					开发目录。
+						assets		资源文件。可能会打包进js文件内，并且会重命名。
+							css		样式文件。
+								base.css		自己设置的全局样式。
+								normalize.css	初始化全局样式。
+							img		图片文件。
+						common		公共js文件（公共常量、工具类、混入等）。
+						components	公共组件。
+							common		完全公共的组件（与当前项目无关）。
+							content		与当前项目业务有关的公共组件。
+						network		网络请求相关。
+						router		路由。
+						store		vuex。
+						views		视图。
+						App.vue		网站入口。
+						main.js		项目入口。
+.borwserslistrc		浏览器的兼容配置。
+.editorconfig		文件样式配置。
+.gitignore			git忽略文件。
+package-lock.json	项目npm配置文件（绝对版本号）。
+package.json		项目npm配置文件（大致版本号）。
+README.md			项目说明。
+vue.config.js		配置文件。

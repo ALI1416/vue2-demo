@@ -1,0 +1,52 @@
+安装cli
+npm install -g @vue/cli
+安装cli2模板
+npm install -g @vue/cli-init
+
+
+生成vue-cli2模板
+vue init webpack 文件夹名
+
+02-cli2使用了Runtime-only和ESLint(Standard)
+
+E:\vue\05-vueCLI>vue init webpack 01-cli2 新建vuecli2模板到01-cli2文件夹
+? Project name 01-cli2 项目名（默认和文件夹名一致）
+? Project description A Vue.js project 项目介绍（默认A Vue.js project）
+? Author ck 作者（默认读取.gitconfig里面的作者和邮箱，没有就为空）
+? Vue build standalone 构建方式（有Runtime+Complier(standalone)和Runtime-only(runtime)，02-cli2会使用后者，容量小6kb并且运行速度快）
+? Install vue-router? No 是否使用路由（以后会需要）
+? Use ESLint to lint your code? No 是否使用规范ES（02-cli2会使用，写的js代码必须符合他的规范，不符合会不能通过编译。有Standard、Airbnb、自定义版本，推荐Standard）
+? Set up unit tests No 是否使用单元测试（国内基本上不用）
+? Setup e2e tests with Nightwatch? No 是否使用端到端测试（自动化测试，测试工程师才需要）
+? Should we run `npm install` for you after the project has been created? (recommended) npm 打包方式（有npm、yarn、自定义版本，推荐npm）
+
+目录文件			说明
+build				webpack配置。
+config				发布/开发环境配置。
+dist				打包后的项目。
+					css			样式文件。
+						app.xxx.css		业务css（自己写的）。
+					js			js代码。
+						数字.xxx.js		懒加载组件js。
+						app.xxx.js		业务js。
+						manifest.xxx.js	底层支撑js（webpack等）。
+						vender.xxx.js	第三方js（vue等）。
+					index.html	网站首页。
+node_modules		npm依赖。
+src					开发目录。
+						assets		资源文件。可能会打包进js文件内，并且会重命名。
+						components	组件。
+						router		路由。
+						App.vue		网站入口。
+						main.js		项目入口。
+static				静态资源。不会打包，原封不动的复制。
+.babelrc			babel配置。
+.editorconfig		文件样式配置。
+.eslintignore		eslint忽略文件。
+.eslintrc.js		eslint配置。
+.gitignore			git忽略文件。
+.postcssrc			css配置。
+index.html			网站首页。
+package-lock.json	项目npm配置文件（绝对版本号）。
+package.json		项目npm配置文件（大致版本号）。
+README.md			项目说明。
