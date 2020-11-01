@@ -37,7 +37,7 @@ export default {
   right: 0px;
   bottom: 0px;
   /* 元素添加阴影：水平阴影的位置，垂直阴影的位置（，模糊距离，阴影的大小，阴影的颜色，从外层的阴影（开始时）改变阴影内侧阴影） */
-  box-shadow: 0px -1px 1px #eee;
+  box-shadow: 0px -1px 1px rgba(128, 128, 128, 0.1);
 }
 /* 2、抽取到TabBarItem.vue */
 /* .tab-bar-item {

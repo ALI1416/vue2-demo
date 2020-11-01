@@ -19,6 +19,6 @@ export default {
   left: 0px;
   right: 0px;
   bottom: 0px;
-  box-shadow: 0px -1px 1px #eee;
+  box-shadow: 0px -1px 1px rgba(128, 128, 128, 0.1);
 }
 </style>

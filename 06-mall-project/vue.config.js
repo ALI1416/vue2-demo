@@ -19,5 +19,9 @@ module.exports = {
                 'views': '@/views',
             }
         }
+    },
+    /* 开发环境配置 */
+    devServer: {
+        open: true, //自动启动浏览器
     }
 }
