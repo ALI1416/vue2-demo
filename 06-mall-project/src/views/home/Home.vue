@@ -24,7 +24,6 @@ export default {
   },
   created() {
     getHomeMultidata().then((res) => {
-      console.log(res.banners);
       this.banners = res.banners;
     });
   },

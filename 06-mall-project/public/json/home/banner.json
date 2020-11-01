@@ -1,0 +1,28 @@
+{
+    "banners": [
+        {
+            "url": "/image/banner/1.jpg",
+            "link": "/image/banner/1.jpg"
+        },
+        {
+            "url": "/image/banner/2.jpg",
+            "link": "/image/banner/2.jpg"
+        },
+        {
+            "url": "/image/banner/3.jpg",
+            "link": "/image/banner/3.jpg"
+        },
+        {
+            "url": "/image/banner/4.jpg",
+            "link": "/image/banner/4.jpg"
+        },
+        {
+            "url": "/image/banner/5.jpg",
+            "link": "/image/banner/5.jpg"
+        },
+        {
+            "url": "/image/banner/6.jpg",
+            "link": "/image/banner/6.jpg"
+        }
+    ]
+}

@@ -48,8 +48,8 @@ public				静态资源。不会打包，原封不动的复制。
 src					开发目录。
 						assets		资源文件。可能会打包进js文件内，并且会重命名。
 							css		样式文件。
-								base.css		自己设置的全局样式。
-								normalize.css	初始化全局样式。
+								base.css		自定义底层样式。
+								normalize.css	标准化样式npm install --save normalize.css（文件不显示）
 							img		图片文件。
 						common		公共js文件（公共常量、工具类、混入等）。
 						components	公共组件。

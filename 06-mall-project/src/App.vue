@@ -5,6 +5,7 @@
   </div>
 </template>
 <script>
+import "normalize.css";
 import MainTabBar from "components/content/mainTabbar/MainTabBar";
 export default {
   name: "app",
@@ -13,6 +14,6 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 @import "assets/css/base.css";
 </style>

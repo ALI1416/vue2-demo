@@ -1,21 +1,24 @@
 <template>
   <div>
-    <vue-slick-carousel v-bind="settings">
-      <!-- <div>1</div> -->
-      <div v-for="(item, index) in banners" :key="item.url">
-        {{ index }}-{{ item.url }}...
-      </div>
-      <!-- <div>2</div> -->
-      <!-- <div v-for="item in a" :key="item">{{ item }}</div> -->
-    </vue-slick-carousel>
+    <swiper class="swiper" :options="swiperOption">
+      <swiper-slide v-for="item in banners" :key="item.url">
+        <div>
+          <!-- <a :href="item.link"> -->
+          <img :src="item.url" />
+          <!-- </a> -->
+        </div>
+      </swiper-slide>
+      <div class="swiper-scrollbar"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
   </div>
 </template>
 <script>
-// 引入第三方轮播图库 npm i vue-slick-carousel
-import VueSlickCarousel from "vue-slick-carousel";
-import "vue-slick-carousel/dist/vue-slick-carousel.css";
-// optional style for arrows & dots
-import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+// 引入第三方轮播图库 npm install swiper vue-awesome-swiper --save
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import "swiper/swiper-bundle.css";
 export default {
   name: "HomeSwiper",
   props: {
@@ -26,18 +29,23 @@ export default {
       },
     },
   },
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   data() {
     return {
-      a: [1, 3, 5, 7],
-      settings: {
-        arrows: false,
-        dots: true,
-        // lazyLoad: "ondemand",
+      swiperOption: {
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
       },
     };
-  },
-  components: {
-    VueSlickCarousel,
   },
 };
 </script>
