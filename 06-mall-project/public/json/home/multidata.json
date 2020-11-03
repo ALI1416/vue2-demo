@@ -1,0 +1,142 @@
+{
+    "banner": [
+        {
+            "url": "/image/home/banner/1.jpg",
+            "link": "/image/home/banner/1.jpg"
+        },
+        {
+            "url": "/image/home/banner/2.jpg",
+            "link": "/image/home/banner/2.jpg"
+        },
+        {
+            "url": "/image/home/banner/3.jpg",
+            "link": "/image/home/banner/3.jpg"
+        },
+        {
+            "url": "/image/home/banner/4.jpg",
+            "link": "/image/home/banner/4.jpg"
+        },
+        {
+            "url": "/image/home/banner/5.jpg",
+            "link": "/image/home/banner/5.jpg"
+        },
+        {
+            "url": "/image/home/banner/6.jpg",
+            "link": "/image/home/banner/6.jpg"
+        }
+    ],
+    "category": [
+        {
+            "title": "京东超市",
+            "url": "/image/home/category/1.png",
+            "link": "/image/home/category/1.png"
+        },
+        {
+            "title": "数码电器",
+            "url": "/image/home/category/2.png",
+            "link": "/image/home/category/2.png"
+        },
+        {
+            "title": "京东服饰",
+            "url": "/image/home/category/3.png",
+            "link": "/image/home/category/3.png"
+        },
+        {
+            "title": "京东生鲜",
+            "url": "/image/home/category/4.png",
+            "link": "/image/home/category/4.png"
+        },
+        {
+            "title": "京东到家",
+            "url": "/image/home/category/5.png",
+            "link": "/image/home/category/5.png"
+        },
+        {
+            "title": "充值缴费",
+            "url": "/image/home/category/6.png",
+            "link": "/image/home/category/6.png"
+        },
+        {
+            "title": "9.9元拼",
+            "url": "/image/home/category/7.png",
+            "link": "/image/home/category/7.png"
+        },
+        {
+            "title": "领券",
+            "url": "/image/home/category/8.png",
+            "link": "/image/home/category/8.png"
+        },
+        {
+            "title": "领金贴",
+            "url": "/image/home/category/9.png",
+            "link": "/image/home/category/9.png"
+        },
+        {
+            "title": "PLUS会员",
+            "url": "/image/home/category/10.png",
+            "link": "/image/home/category/10.png"
+        }
+    ],
+    "recommend": [
+        {
+            "title": "惠普（HP）DeskJet 2622 无线家用喷墨打印一体机 (学生作业/手机/彩色打印，扫描，复印，两年保修)",
+            "url": "/image/home/recommend/1.jpg",
+            "link": "/image/home/recommend/1.jpg",
+            "price": "449"
+        },
+        {
+            "title": "康佳（KONKA）601升 对开门冰箱 风冷无霜 电脑温控 双开门冰箱 金色面板 BCD-601WEGX5S",
+            "url": "/image/home/recommend/2.jpg",
+            "link": "/image/home/recommend/2.jpg",
+            "price": "2299"
+        },
+        {
+            "title": "玻璃喝水杯子男创意个性简约清新森系潮流防摔便携茶水分离泡茶杯 560ML绅士黑【茶水分离升级版】",
+            "url": "/image/home/recommend/3.jpg",
+            "link": "/image/home/recommend/3.jpg",
+            "price": "94"
+        },
+        {
+            "title": "惠普（HP）小印 Sprocket 200 (粉色)手机照片打印机 无线蓝牙 随身 口袋迷你家用 手帐自拍生日节日年会礼品",
+            "url": "/image/home/recommend/4.jpg",
+            "link": "/image/home/recommend/4.jpg",
+            "price": "849"
+        },
+        {
+            "title": "【商场同款】Navigare纳维凯尔 秋季男士纯棉衬衫长袖T恤休闲商务修身翻领格纹衬衣 意大利小帆船 黑灰 XL/41",
+            "url": "/image/home/recommend/5.jpg",
+            "link": "/image/home/recommend/5.jpg",
+            "price": "229"
+        },
+        {
+            "title": "罗技（Logitech）MK275 键鼠套装 无线键鼠套装 办公键鼠套装 全尺寸 黑蓝色 带无线2.4G接收器",
+            "url": "/image/home/recommend/6.jpg",
+            "link": "/image/home/recommend/6.jpg",
+            "price": "99"
+        },
+        {
+            "title": "罗技（G）PRO WIRELESS无线游戏鼠标 电竞鼠标 吃鸡鼠标 绝地求生 GPW狗屁王 轻量化 黑色",
+            "url": "/image/home/recommend/7.jpg",
+            "link": "/image/home/recommend/7.jpg",
+            "price": "699"
+        },
+        {
+            "title": "【同价11.11】有品公馆 床 现代意式真皮床1.8米双人床婚床床北欧主卧皮床家具 （头层牛皮）1.8米单床 支架床",
+            "url": "/image/home/recommend/8.jpg",
+            "link": "/image/home/recommend/8.jpg",
+            "price": "4583"
+        },
+        {
+            "title": "Tt（Thermaltake）AH T600 白色 机箱水冷电脑主机（直升机概念/异形/转轴开窗/E-ATX主板/Type-C/全塔式）",
+            "url": "/image/home/recommend/9.jpg",
+            "link": "/image/home/recommend/9.jpg",
+            "price": "1799"
+        },
+        {
+            "title": "英特尔（Intel）i7-10700 8核16线程 盒装CPU处理器",
+            "url": "/image/home/recommend/10.jpg",
+            "link": "/image/home/recommend/10.jpg",
+            "price": "2399"
+        }
+    ]
+}

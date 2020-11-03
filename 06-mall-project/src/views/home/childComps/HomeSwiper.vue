@@ -1,7 +1,7 @@
 <template>
   <div>
     <swiper class="swiper" :options="swiperOption">
-      <swiper-slide v-for="item in banners" :key="item.url">
+      <swiper-slide v-for="item in banner" :key="item.url">
         <div>
           <a :href="item.link">
             <img :src="item.url" class="swiper-img" />
@@ -21,7 +21,7 @@ import "swiper/css/swiper.css";
 export default {
   name: "HomeSwiper",
   props: {
-    banners: {
+    banner: {
       type: Array,
       default() {
         return [];
@@ -36,7 +36,9 @@ export default {
     return {
       swiperOption: {
         loop: true,
-        autoplay: true,
+        autoplay: {
+          disableOnInteraction: false,
+        },
         pagination: {
           el: ".swiper-pagination",
           clickable: true,

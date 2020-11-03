@@ -3,7 +3,7 @@
     <nav-bar class="navbar-home">
       <div slot="center">首页</div>
     </nav-bar>
-    <home-swiper :banners="banners"></home-swiper>
+    <home-swiper :banner="banner"></home-swiper>
   </div>
 </template>
 
@@ -19,12 +19,16 @@ export default {
   },
   data() {
     return {
-      banners: [],
+      banner: [],
+      category: [],
+      recommend: [],
     };
   },
   created() {
     getHomeMultidata().then((res) => {
-      this.banners = res.banners;
+      this.banner = res.banner;
+      this.category = res.category;
+      this.recommend = res.recommend;
     });
   },
 };
