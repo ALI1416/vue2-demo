@@ -75,8 +75,61 @@
             "title": "PLUS会员",
             "url": "/image/home/category/10.png",
             "link": "/image/home/category/10.png"
+        },
+        {
+            "title": "京东国际",
+            "url": "/image/home/category/11.png",
+            "link": "/image/home/category/11.png"
+        },
+        {
+            "title": "京东拍卖",
+            "url": "/image/home/category/12.png",
+            "link": "/image/home/category/12.png"
+        },
+        {
+            "title": "唯品会",
+            "url": "/image/home/category/13.png",
+            "link": "/image/home/category/13.png"
+        },
+        {
+            "title": "玩3C",
+            "url": "/image/home/category/14.png",
+            "link": "/image/home/category/14.png"
+        },
+        {
+            "title": "沃尔玛",
+            "url": "/image/home/category/15.png",
+            "link": "/image/home/category/15.png"
+        },
+        {
+            "title": "美妆馆",
+            "url": "/image/home/category/16.png",
+            "link": "/image/home/category/16.png"
+        },
+        {
+            "title": "京东旅行",
+            "url": "/image/home/category/17.png",
+            "link": "/image/home/category/17.png"
+        },
+        {
+            "title": "拍拍二手",
+            "url": "/image/home/category/18.png",
+            "link": "/image/home/category/18.png"
+        },
+        {
+            "title": "物流查询",
+            "url": "/image/home/category/19.png",
+            "link": "/image/home/category/19.png"
+        },
+        {
+            "title": "全部",
+            "url": "/image/home/category/20.png",
+            "link": "/image/home/category/20.png"
         }
     ],
+    "recommendImg": {
+        "url": "/image/home/recommend.png"
+    },
     "recommend": [
         {
             "title": "惠普（HP）DeskJet 2622 无线家用喷墨打印一体机 (学生作业/手机/彩色打印，扫描，复印，两年保修)",

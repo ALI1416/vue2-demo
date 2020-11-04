@@ -2,7 +2,7 @@ import { request } from './request'
 
 function init() {
     return request({
-        url: '/home/init.json'
+        url: '/app/init.json'
     })
 }
 
