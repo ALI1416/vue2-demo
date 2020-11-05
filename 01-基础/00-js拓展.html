@@ -10,6 +10,7 @@
     箭头函数中this的指向
     Promise的基本使用
     数组、对象的解构
+    数组的特殊用法
  -->
 
 <head>
@@ -418,7 +419,9 @@
             console.log(d, f); // 1  3
             let [e,] = f1();
             console.log(e); // 1
-            // 对象解构
+        }
+        // 对象解构
+        {
             function f2() {
                 return {
                     a: '1',
@@ -426,13 +429,30 @@
                     c: '3'
                 };
             }
-        }
-        {
+            // 原变量名：新变量名
             let { a: x, b: y, c: z } = f2();
             console.log(x, y, z); // 1  2  3
             // 简写
             let { a, b, c } = f2();
             console.log(a, b, c); // 1  2  3
+        }
+
+        /* 数组的特殊用法 */
+        {
+            let a = [1, 2, 3];
+            let b = [4, 5, 6];
+            // 需求：把b插入到a后
+            // 做法1：使用for循环
+            for (i of b) {
+                a.push(i);
+            }
+            console.log(a);
+            // 做法2：使用...语法，push可以接受多个值
+            a.push(...b);
+            console.log(a);
+            // 例如a.push(9,8,7);是把9,8,7插入到a后
+            a.push(9, 8, 7);
+            console.log(a);
         }
     </script>
 </body>

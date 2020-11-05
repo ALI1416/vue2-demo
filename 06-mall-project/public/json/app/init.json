@@ -1,11 +1,18 @@
 {
-    "tabbar": [
-        {
-            "title": "",
-            "url": "",
-            "link": "",
-            "active-url": "",
-            "active-color": ""
-        }
-    ]
+    "tabbar": {
+        "tabbar-default": {
+            "active-color": "",
+            "active-bg-color": ""
+        },
+        "tabbar-item": [
+            {
+                "title": "",
+                "url": "",
+                "link": "",
+                "active-url": "",
+                "active-color": "",
+                "active-bg-color": ""
+            }
+        ]
+    }
 }
