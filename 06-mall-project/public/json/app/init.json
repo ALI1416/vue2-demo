@@ -1,17 +1,37 @@
 {
     "tabbar": {
-        "tabbar-default": {
-            "active-color": "",
-            "active-bg-color": ""
+        "default": {
+            "style": {
+                "normal": {
+                    "img": {},
+                    "text": {}
+                },
+                "active": {
+                    "img": {},
+                    "text": {}
+                }
+            }
         },
-        "tabbar-item": [
+        "item": [
             {
-                "title": "",
-                "url": "",
-                "link": "",
-                "active-url": "",
-                "active-color": "",
-                "active-bg-color": ""
+                "normal": {
+                    "title": "",
+                    "url": "",
+                    "link": "",
+                    "style": {
+                        "img": {},
+                        "text": {}
+                    }
+                },
+                "active": {
+                    "title": "",
+                    "url": "",
+                    "link": "",
+                    "style": {
+                        "img": {},
+                        "text": {}
+                    }
+                }
             }
         ]
     }
