@@ -1,36 +1,32 @@
 {
     "tabbar": {
-        "default": {
-            "style": {
-                "normal": {
-                    "img": {},
-                    "text": {}
-                },
-                "active": {
-                    "img": {},
-                    "text": {}
-                }
-            }
-        },
         "item": [
             {
                 "normal": {
-                    "title": "",
-                    "url": "",
-                    "link": "",
-                    "style": {
-                        "img": {},
-                        "text": {}
-                    }
-                },
-                "active": {
-                    "title": "",
-                    "url": "",
-                    "link": "",
-                    "style": {
-                        "img": {},
-                        "text": {}
-                    }
+                    "title": "Home",
+                    "url": "/image/app/home.svg",
+                    "link": "/home"
+                }
+            },
+            {
+                "normal": {
+                    "title": "Category",
+                    "url": "/image/app/category.svg",
+                    "link": "/category"
+                }
+            },
+            {
+                "normal": {
+                    "title": "Shopcart",
+                    "url": "/image/app/shopcart.svg",
+                    "link": "/shopcart"
+                }
+            },
+            {
+                "normal": {
+                    "title": "Profile",
+                    "url": "/image/app/profile.svg",
+                    "link": "/profile"
                 }
             }
         ]

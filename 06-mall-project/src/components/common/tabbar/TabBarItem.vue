@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-bar-item" @click="itemClick" :style="defaultNormalStyle">
+  <div class="tab-bar-item" @click="itemClick">
     <div v-if="isActive"><slot name="item-icon-active"></slot></div>
     <div v-else><slot name="item-icon"></slot></div>
     <div :style="activeTextStyle"><slot name="item-text"></slot></div>
@@ -9,19 +9,15 @@
 export default {
   name: "TabBarItem",
   props: {
-    tabbar,
+    link: String,
+    activeTextColor: {
+      type: String,
+      default: "red",
+    },
   },
   computed: {
     isActive() {
       return this.$route.path.indexOf(this.link) != -1;
-    },
-    defaultNormalStyle() {
-      const style = tabbar.tabbarDefault.normalStyle;
-      return style == (undefined || null) ? "" : style;
-    },
-    defaultActiveStyle() {
-      const style = tabbar.tabbarDefault.activeStyle;
-      return style == (undefined || null) ? "" : style;
     },
     activeTextStyle() {
       return this.isActive ? { color: this.activeTextColor } : {};

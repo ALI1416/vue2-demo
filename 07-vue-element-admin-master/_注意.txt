@@ -1,0 +1,5 @@
+弹出以下错误：
+git.EXE ls-remote -h -t git://github.com/adobe-webplatform/eve.git
+需要执行以下命令：
+git config --global url."https://".insteadOf git://
+

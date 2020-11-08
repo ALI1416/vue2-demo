@@ -1,0 +1,38 @@
+{
+    "tabbar": {
+        "default": {
+            "style": {
+                "normal": {
+                    "img": {},
+                    "text": {}
+                },
+                "active": {
+                    "img": {},
+                    "text": {}
+                }
+            }
+        },
+        "item": [
+            {
+                "normal": {
+                    "title": "",
+                    "url": "",
+                    "link": "",
+                    "style": {
+                        "img": {},
+                        "text": {}
+                    }
+                },
+                "active": {
+                    "title": "",
+                    "url": "",
+                    "link": "",
+                    "style": {
+                        "img": {},
+                        "text": {}
+                    }
+                }
+            }
+        ]
+    }
+}
